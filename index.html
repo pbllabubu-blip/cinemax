@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineManager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="topo">
+    <div class="logo">
+        🎬 <span>CineMax</span>
+    </div>
+
+    <button id="btnNovoConteudo" class="btn-principal">
+        + Novo conteúdo
+    </button>
+</header>
+
+<main class="container">
+
+    <!-- DASHBOARD -->
+    <section class="dashboard">
+
+        <div class="dashboard-card">
+            <span>📚</span>
+            <div>
+                <small>Total de títulos</small>
+                <strong id="totalConteudos">0</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <span>🎬</span>
+            <div>
+                <small>Filmes</small>
+                <strong id="totalFilmes">0</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <span>📺</span>
+            <div>
+                <small>Séries</small>
+                <strong id="totalSeries">0</strong>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <span>⭐</span>
+            <div>
+                <small>Média das notas</small>
+                <strong id="mediaNotas">0</strong>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FILTROS -->
+    <section class="filtros">
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="🔎 Pesquisar título ou diretor..."
+        >
+
+        <select id="filtroTipo">
+            <option value="todos">Todos os conteúdos</option>
+            <option value="filme">🎬 Filmes</option>
+            <option value="serie">📺 Séries</option>
+        </select>
+
+        <select id="filtroGenero">
+            <option value="todos">Todos os gêneros</option>
+        </select>
+
+    </section>
+
+    <!-- LISTA -->
+    <section id="listaConteudos" class="lista-conteudos"></section>
+
+</main>
+
+<!-- MODAL ADICIONAR / EDITAR -->
+<div id="modal" class="modal">
+
+    <div class="modal-conteudo">
+
+        <div class="modal-header">
+            <h2 id="tituloModal">Novo conteúdo</h2>
+            <button id="btnFecharModal" class="btn-fechar">×</button>
+        </div>
+
+        <form id="formConteudo">
+
+            <div class="campo">
+                <label>Tipo de conteúdo</label>
+
+                <div class="tipo-opcoes">
+
+                    <label class="tipo-option">
+                        <input
+                            type="radio"
+                            name="tipo"
+                            value="filme"
+                            checked
+                        >
+                        <span>🎬 Filme</span>
+                    </label>
+
+                    <label class="tipo-option">
+                        <input
+                            type="radio"
+                            name="tipo"
+                            value="serie"
+                        >
+                        <span>📺 Série</span>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Nome do filme ou série"
+                    required
+                >
+            </div>
+
+            <div class="campo">
+                <label>Gêneros</label>
+
+                <div class="generos-container">
+
+                    <label>
+                        <input type="checkbox" value="Ação" class="check-genero">
+                        Ação
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Aventura" class="check-genero">
+                        Aventura
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Animação" class="check-genero">
+                        Animação
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Comédia" class="check-genero">
+                        Comédia
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Drama" class="check-genero">
+                        Drama
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Terror" class="check-genero">
+                        Terror
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Suspense" class="check-genero">
+                        Suspense
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Romance" class="check-genero">
+                        Romance
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Ficção Científica" class="check-genero">
+                        Ficção Científica
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Fantasia" class="check-genero">
+                        Fantasia
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Mistério" class="check-genero">
+                        Mistério
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Crime" class="check-genero">
+                        Crime
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Documentário" class="check-genero">
+                        Documentário
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Musical" class="check-genero">
+                        Musical
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Guerra" class="check-genero">
+                        Guerra
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Faroeste" class="check-genero">
+                        Faroeste
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Biografia" class="check-genero">
+                        Biografia
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Histórico" class="check-genero">
+                        Histórico
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Família" class="check-genero">
+                        Família
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Esporte" class="check-genero">
+                        Esporte
+                    </label>
+
+                </div>
+
+                <label class="outro-genero">
+                    <input type="checkbox" id="checkOutroGenero">
+                    Outro gênero
+                </label>
+
+                <input
+                    type="text"
+                    id="generoPersonalizado"
+                    placeholder="Digite o gênero personalizado"
+                    class="campo-personalizado"
+                >
+            </div>
+
+            <div class="linha">
+
+                <div class="campo">
+                    <label for="ano">Ano</label>
+                    <input
+                        type="number"
+                        id="ano"
+                        placeholder="2026"
+                        min="1900"
+                        max="2100"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="nota">Nota</label>
+                    <input
+                        type="number"
+                        id="nota"
+                        placeholder="8.5"
+                        min="0"
+                        max="10"
+                        step="0.1"
+                    >
+                </div>
+
+            </div>
+
+            <div class="campo">
+                <label for="diretor">Diretor / Criador</label>
+                <input
+                    type="text"
+                    id="diretor"
+                    placeholder="Nome do diretor ou criador"
+                >
+            </div>
+
+            <!-- CAMPOS DE SÉRIE -->
+            <div id="dadosSerie" class="dados-serie">
+
+                <div class="linha">
+
+                    <div class="campo">
+                        <label for="temporadas">Temporadas</label>
+                        <input
+                            type="number"
+                            id="temporadas"
+                            min="1"
+                            placeholder="Ex: 5"
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="episodios">Episódios</label>
+                        <input
+                            type="number"
+                            id="episodios"
+                            min="1"
+                            placeholder="Ex: 50"
+                        >
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="campo">
+                <label for="capa">URL da capa</label>
+                <input
+                    type="url"
+                    id="capa"
+                    placeholder="https://..."
+                >
+            </div>
+
+            <div class="campo">
+                <label for="descricao">Descrição</label>
+
+                <textarea
+                    id="descricao"
+                    rows="6"
+                    placeholder="Digite a descrição completa..."
+                ></textarea>
+            </div>
+
+            <div class="botoes-modal">
+
+                <button
+                    type="button"
+                    id="btnCancelar"
+                    class="btn-cancelar"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-salvar"
+                >
+                    Salvar
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- MODAL DE DESCRIÇÃO -->
+<div id="modalDescricao" class="modal">
+
+    <div class="modal-conteudo modal-descricao">
+
+        <div class="modal-header">
+            <h2 id="tituloDescricao">Descrição</h2>
+
+            <button
+                id="fecharDescricao"
+                class="btn-fechar"
+            >
+                ×
+            </button>
+        </div>
+
+        <div class="descricao-completa">
+            <p id="textoDescricao"></p>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
